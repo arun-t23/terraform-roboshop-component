@@ -9,7 +9,7 @@ variable "environment" {
 }
 
 
-variable "environment" {
+variable "component" {
 
 }
 
