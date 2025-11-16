@@ -11,7 +11,7 @@ locals {
 
   health_check_path = "${var.component}"  ==  "frontend" ? "/" : "/health" 
 
-  host_path = "${component}" == "frontend" ? "${var.project_name}-${var.environment}.${var.domain_name}" : "${var.component}.backend-alb-${var.environment}.${var.domain_name}"
+  host_path = "${var.component}" == "frontend" ? "${var.project_name}-${var.environment}.${var.domain_name}" : "${var.component}.backend-alb-${var.environment}.${var.domain_name}"
 
   common_name_suffix  = "${var.project_name}-${var.environment}"
    common_tags   =   {
