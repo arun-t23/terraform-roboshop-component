@@ -163,7 +163,7 @@ resource "aws_autoscaling_group" "main" {
 
 
 resource "aws_autoscaling_policy" "main" {
-  # ... other configuration ...
+  
     autoscaling_group_name = aws_autoscaling_group.main.name
     name    = "${local.common_name_suffix}-${var.component}"
     policy_type = "TargetTrackingScaling" 
