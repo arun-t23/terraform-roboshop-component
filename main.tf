@@ -141,6 +141,14 @@ resource "aws_autoscaling_group" "main" {
 
   ## arn = amazon resource name 
 
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50 # atleast 50% of the instances should be up and running
+    }
+    triggers = ["launch_template"]
+  }
+
   dynamic "tag" { ## we get the iterator with name as tag
     for_each        =   merge(
         local.common_tags,
