@@ -15,25 +15,22 @@ resource "terraform_data" "main" {
   triggers_replace = [
     aws_instance.main.id
   ]
-
-connection {
+  
+  connection {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
     host     = aws_instance.main.private_ip
   }
 
-  ## Terraform copies this file to mysql server
   provisioner "file" {
     source = "bootstrap.sh"
     destination = "/tmp/bootstrap.sh"
   }
 
-
   provisioner "remote-exec" {
-    inline  =   [
-        "chmod +X /tmp/bootstrap.sh",
-        # "sudo sh /tmp/bootstrap.sh"
+    inline = [
+        "chmod +x /tmp/bootstrap.sh",
         "sudo sh /tmp/bootstrap.sh ${var.component} ${var.environment}"
     ]
   }
